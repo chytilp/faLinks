@@ -3,11 +3,31 @@ name = "falinks"
 version = "0.1.0"
 description = ""
 authors = ["Patrik Chytil <patrikch@centrum.cz>"]
+packages = [
+    {include = "falinks"},
+    {include="main.py"}
+]
 readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.10"
+sqlalchemy = "^2.0.36"
+aiomysql = "^0.2.0"
+fastapi = {extras = ["all"], version = "^0.115.4"}
+python-dotenv = "^1.0.1"
+poethepoet = "^0.30.0"
 
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.3"
+pylint = "^3.3.1"
+mypy = "^1.13.0"
+flake8 = "^7.1.1"
+isort = "^5.13.2"
+black = "^24.10.0"
+autoflake = "^2.3.1"
+
+[tool.poe.tasks]
+app = { shell = "python3 main.py", env= { ENVIRONMENT="dev" }}
 
 [build-system]
 requires = ["poetry-core"]
